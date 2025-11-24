@@ -1,156 +1,196 @@
-import React from 'react';
-import { BarChart3, Calculator, TrendingUp, AlertCircle, Users, MessageSquare, DollarSign, Target, Clock } from 'lucide-react';
+import streamlit as st
 
-const DashboardHub = () => {
-  const dashboards = [
-    {
-      title: "Performance Dashboard",
-      description: "Shows the live performance of all our brands",
-      url: "https://sgdashboards.streamlit.app/",
-      icon: <BarChart3 className="w-8 h-8" />,
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      title: "Opex",
-      description: "Track the expenses of your domain",
-      url: "#",
-      icon: <DollarSign className="w-8 h-8" />,
-      color: "from-teal-500 to-teal-600"
-    },
-    {
-      title: "NPA Dashboard",
-      description: "Coming Soon",
-      url: "#",
-      icon: <AlertCircle className="w-8 h-8" />,
-      color: "from-red-500 to-red-600",
-      comingSoon: true
-    },
-    {
-      title: "Marketing Dashboard",
-      description: "Coming Soon",
-      url: "#",
-      icon: <Target className="w-8 h-8" />,
-      color: "from-orange-500 to-orange-600",
-      comingSoon: true
-    },
-    {
-      title: "Customer Complaints Dashboard",
-      description: "Coming Soon",
-      url: "#",
-      icon: <MessageSquare className="w-8 h-8" />,
-      color: "from-purple-500 to-purple-600",
-      comingSoon: true
+# Page configuration
+st.set_page_config(
+    page_title="Analytics Hub",
+    page_icon="📊",
+    layout="wide"
+)
+
+# Custom CSS for beautiful cards
+st.markdown("""
+<style>
+    .main {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
     }
-  ];
-
-  const calculators = [
-    {
-      title: "NBFC Projection Calculator",
-      description: "Visualize your STPL growth story in real time 📈",
-      url: "https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/",
-      icon: <TrendingUp className="w-8 h-8" />,
-      color: "from-green-500 to-green-600"
-    },
-    {
-      title: "Marketing Expense Requirement Calculator",
-      description: "Helps you to analyze the expense required for Marketing",
-      url: "https://subhamgargmarketinganalysis.streamlit.app/",
-      icon: <DollarSign className="w-8 h-8" />,
-      color: "from-orange-500 to-orange-600"
-    },
-    {
-      title: "Work Force Requirement",
-      description: "Calculates the ideal team size based on workload, productivity, and target utilization.",
-      url: "https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/",
-      icon: <Users className="w-8 h-8" />,
-      color: "from-purple-500 to-purple-600"
-    },
-    {
-      title: "Incentive Calculator NPA Team",
-      description: "Know the incentives earned by team members",
-      url: "https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/",
-      icon: <Calculator className="w-8 h-8" />,
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      title: "Projection Calculator",
-      description: "Analyse your growth in every FDPs and strategise accordingly.",
-      url: "https://shuhamgargprojectioncalculator.streamlit.app/",
-      icon: <BarChart3 className="w-8 h-8" />,
-      color: "from-teal-500 to-teal-600"
+    
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 100%;
+        border-left: 4px solid;
+        cursor: pointer;
     }
-  ];
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-blue { border-left-color: #3b82f6; }
+    .card-teal { border-left-color: #14b8a6; }
+    .card-red { border-left-color: #ef4444; }
+    .card-orange { border-left-color: #f97316; }
+    .card-purple { border-left-color: #a855f7; }
+    .card-green { border-left-color: #22c55e; }
+    
+    .card-title {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 10px;
+    }
+    
+    .card-description {
+        color: #6b7280;
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+    
+    .coming-soon-badge {
+        background: #fbbf24;
+        color: #92400e;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    
+    .section-header {
+        font-size: 2em;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-icon {
+        font-size: 1.2em;
+        margin-right: 15px;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-  const Card = ({ item }) => {
-    const handleClick = () => {
-      if (!item.comingSoon && item.url !== "#") {
-        window.open(item.url, '_blank');
-      }
-    };
+# Header
+st.markdown("<h1 style='text-align: center; font-size: 3em; color: #1f2937; margin-bottom: 10px;'>📊 Analytics Hub</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 1.2em; color: #6b7280; margin-bottom: 40px;'>Your central hub for dashboards and calculators</p>", unsafe_allow_html=True)
 
-    const cardClasses = item.comingSoon 
-      ? 'relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 opacity-60 cursor-not-allowed'
-      : 'relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer';
+# Dashboards Data
+dashboards = [
+    {
+        "title": "Performance Dashboard",
+        "description": "Shows the live performance of all our brands",
+        "url": "https://sgdashboards.streamlit.app/",
+        "color": "blue",
+        "coming_soon": False
+    },
+    {
+        "title": "Opex",
+        "description": "Track the expenses of your domain",
+        "url": "#",
+        "color": "teal",
+        "coming_soon": False
+    },
+    {
+        "title": "NPA Dashboard",
+        "description": "Coming Soon",
+        "url": "#",
+        "color": "red",
+        "coming_soon": True
+    },
+    {
+        "title": "Marketing Dashboard",
+        "description": "Coming Soon",
+        "url": "#",
+        "color": "orange",
+        "coming_soon": True
+    },
+    {
+        "title": "Customer Complaints Dashboard",
+        "description": "Coming Soon",
+        "url": "#",
+        "color": "purple",
+        "coming_soon": True
+    }
+]
 
-    const iconClasses = 'inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ' + item.color + ' text-white mb-4';
+# Calculators Data
+calculators = [
+    {
+        "title": "NBFC Projection Calculator",
+        "description": "Visualize your STPL growth story in real time 📈",
+        "url": "https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/",
+        "color": "green",
+        "coming_soon": False
+    },
+    {
+        "title": "Marketing Expense Requirement Calculator",
+        "description": "Helps you to analyze the expense required for Marketing",
+        "url": "https://subhamgargmarketinganalysis.streamlit.app/",
+        "color": "orange",
+        "coming_soon": False
+    },
+    {
+        "title": "Work Force Requirement",
+        "description": "Calculates the ideal team size based on workload, productivity, and target utilization.",
+        "url": "https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/",
+        "color": "purple",
+        "coming_soon": False
+    },
+    {
+        "title": "Incentive Calculator NPA Team",
+        "description": "Know the incentives earned by team members",
+        "url": "https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/",
+        "color": "blue",
+        "coming_soon": False
+    },
+    {
+        "title": "Projection Calculator",
+        "description": "Analyse your growth in every FDPs and strategise accordingly.",
+        "url": "https://shuhamgargprojectioncalculator.streamlit.app/",
+        "color": "teal",
+        "coming_soon": False
+    }
+]
 
-    return (
-      <div onClick={handleClick} className={cardClasses}>
-        {item.comingSoon && (
-          <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">
-            Coming Soon
-          </div>
-        )}
-        <div className={iconClasses}>
-          {item.icon}
-        </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
-        <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
-      </div>
-    );
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Analytics Hub
-          </h1>
-          <p className="text-xl text-gray-600">
-            Your central hub for dashboards and calculators
-          </p>
-        </div>
-
-        {/* Dashboards Section */}
-        <div className="mb-16">
-          <div className="flex items-center mb-6">
-            <BarChart3 className="w-8 h-8 text-blue-600 mr-3" />
-            <h2 className="text-3xl font-bold text-gray-900">Dashboards</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {dashboards.map((dashboard, index) => (
-              <Card key={index} item={dashboard} />
-            ))}
-          </div>
-        </div>
-
-        {/* Calculators Section */}
-        <div>
-          <div className="flex items-center mb-6">
-            <Calculator className="w-8 h-8 text-green-600 mr-3" />
-            <h2 className="text-3xl font-bold text-gray-900">Calculators</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {calculators.map((calculator, index) => (
-              <Card key={index} item={calculator} />
-            ))}
-          </div>
-        </div>
-      </div>
+def create_card(item):
+    coming_soon_html = f'<div class="coming-soon-badge">Coming Soon</div>' if item["coming_soon"] else ''
+    
+    card_html = f"""
+    <div class="card card-{item['color']}">
+        {coming_soon_html}
+        <div class="card-title">{item['title']}</div>
+        <div class="card-description">{item['description']}</div>
     </div>
-  );
-};
+    """
+    return card_html
 
-export default DashboardHub;
+# Dashboards Section
+st.markdown('<div class="section-header"><span class="header-icon">📊</span> Dashboards</div>', unsafe_allow_html=True)
+
+cols = st.columns(3)
+for idx, dashboard in enumerate(dashboards):
+    with cols[idx % 3]:
+        st.markdown(create_card(dashboard), unsafe_allow_html=True)
+        if not dashboard["coming_soon"] and dashboard["url"] != "#":
+            if st.button(f"Open {dashboard['title']}", key=f"dash_{idx}", use_container_width=True):
+                st.markdown(f'<meta http-equiv="refresh" content="0; url={dashboard["url"]}">', unsafe_allow_html=True)
+                st.link_button("🔗 Click here if not redirected", dashboard["url"], use_container_width=True)
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+# Calculators Section
+st.markdown('<div class="section-header"><span class="header-icon">🧮</span> Calculators</div>', unsafe_allow_html=True)
+
+cols = st.columns(3)
+for idx, calculator in enumerate(calculators):
+    with cols[idx % 3]:
+        st.markdown(create_card(calculator), unsafe_allow_html=True)
+        if not calculator["coming_soon"] and calculator["url"] != "#":
+            st.link_button(f"Open {calculator['title']}", calculator["url"], key=f"calc_{idx}", use_container_width=True)
