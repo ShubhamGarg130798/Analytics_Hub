@@ -20,19 +20,11 @@ html_code = """
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(-45deg, #f0f9ff, #ffffff, #fef3c7, #f3e8ff);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background: #ffffff;
             padding: 50px 30px;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
         /* Floating particles effect */
@@ -81,10 +73,17 @@ html_code = """
             }
         }
         
+        .header-title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
         .header-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
+            width: 70px;
+            height: 70px;
             filter: drop-shadow(0 10px 25px rgba(59, 130, 246, 0.3));
             animation: pulse 3s ease-in-out infinite;
         }
@@ -97,19 +96,9 @@ html_code = """
         .main-title {
             font-size: 3.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
+            color: #1d1d1f;
             letter-spacing: -1px;
-            animation: titleShine 3s ease-in-out infinite;
-            background-size: 200% auto;
-        }
-        
-        @keyframes titleShine {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 100% center; }
+            margin: 0;
         }
         
         .subtitle {
@@ -186,6 +175,47 @@ html_code = """
             flex-direction: column;
             border: 1px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
+        }
+        
+        /* Card background colors */
+        .card-bg-blue {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .card-bg-teal {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+        }
+        
+        .card-bg-red {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+        
+        .card-bg-pink {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+        }
+        
+        .card-bg-purple {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+        }
+        
+        .card-bg-green {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        }
+        
+        .card-bg-orange {
+            background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+        }
+        
+        .card-bg-yellow {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+        
+        .card-bg-indigo {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+        }
+        
+        .card-bg-cyan {
+            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
         }
         
         .card::before {
@@ -391,15 +421,17 @@ html_code = """
 <body>
     <div class="container">
         <div class="header">
-            <svg class="header-icon" viewBox="0 0 100 100" fill="none">
-                <rect x="10" y="55" width="20" height="35" rx="3" fill="#22c55e"/>
-                <rect x="35" y="40" width="20" height="50" rx="3" fill="#ef4444"/>
-                <rect x="60" y="20" width="20" height="70" rx="3" fill="#3b82f6"/>
-                <rect x="0" y="0" width="100" height="15" rx="2" fill="#e5e7eb"/>
-                <line x1="0" y1="15" x2="100" y2="15" stroke="#d1d5db" stroke-width="1"/>
-                <line x1="0" y1="90" x2="100" y2="90" stroke="#d1d5db" stroke-width="2"/>
-            </svg>
-            <h1 class="main-title">Analytics Hub</h1>
+            <div class="header-title-wrapper">
+                <svg class="header-icon" viewBox="0 0 100 100" fill="none">
+                    <rect x="10" y="55" width="20" height="35" rx="3" fill="#22c55e"/>
+                    <rect x="35" y="40" width="20" height="50" rx="3" fill="#ef4444"/>
+                    <rect x="60" y="20" width="20" height="70" rx="3" fill="#3b82f6"/>
+                    <rect x="0" y="0" width="100" height="15" rx="2" fill="#e5e7eb"/>
+                    <line x1="0" y1="15" x2="100" y2="15" stroke="#d1d5db" stroke-width="1"/>
+                    <line x1="0" y1="90" x2="100" y2="90" stroke="#d1d5db" stroke-width="2"/>
+                </svg>
+                <h1 class="main-title">Analytics Hub</h1>
+            </div>
             <p class="subtitle">Your central hub for dashboards and calculators</p>
         </div>
         
@@ -416,7 +448,7 @@ html_code = """
                 </div>
                 
                 <div class="cards-grid">
-                    <a href="https://sgdashboards.streamlit.app/" target="_blank" class="card">
+                    <a href="https://sgdashboards.streamlit.app/" target="_blank" class="card card-bg-blue">
                         <div class="card-icon-box icon-blue">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
@@ -426,7 +458,7 @@ html_code = """
                         <div class="card-description">Shows the live performance of all our brands</div>
                     </a>
                     
-                    <div class="card">
+                    <div class="card card-bg-teal">
                         <div class="card-icon-box icon-teal">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="12" y1="1" x2="12" y2="23"></line>
@@ -437,7 +469,7 @@ html_code = """
                         <div class="card-description">Track the expenses of your domain</div>
                     </div>
                     
-                    <div class="card disabled">
+                    <div class="card card-bg-red disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
                         <div class="card-icon-box icon-red">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -450,7 +482,7 @@ html_code = """
                         <div class="card-description">Coming Soon</div>
                     </div>
                     
-                    <div class="card disabled">
+                    <div class="card card-bg-pink disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
                         <div class="card-icon-box icon-pink">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -463,7 +495,7 @@ html_code = """
                         <div class="card-description">Coming Soon</div>
                     </div>
                     
-                    <div class="card disabled">
+                    <div class="card card-bg-purple disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
                         <div class="card-icon-box icon-purple">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -494,7 +526,7 @@ html_code = """
                 </div>
                 
                 <div class="cards-grid">
-                    <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="card">
+                    <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="card card-bg-green">
                         <div class="card-icon-box icon-green">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -505,7 +537,7 @@ html_code = """
                         <div class="card-description">Visualize your STPL growth story in real time 📈</div>
                     </a>
                     
-                    <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="card">
+                    <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="card card-bg-orange">
                         <div class="card-icon-box icon-orange">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="12" y1="1" x2="12" y2="23"></line>
@@ -516,7 +548,7 @@ html_code = """
                         <div class="card-description">Helps you to analyze the expense required for Marketing</div>
                     </a>
                     
-                    <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card">
+                    <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card card-bg-indigo">
                         <div class="card-icon-box icon-purple">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -529,7 +561,7 @@ html_code = """
                         <div class="card-description">Calculates the ideal team size based on workload, productivity, and target utilization.</div>
                     </a>
                     
-                    <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="card">
+                    <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="card card-bg-yellow">
                         <div class="card-icon-box icon-blue">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <rect x="3" y="3" width="7" height="7"></rect>
@@ -542,7 +574,7 @@ html_code = """
                         <div class="card-description">Know the incentives earned by team members</div>
                     </a>
                     
-                    <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="card">
+                    <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="card card-bg-cyan">
                         <div class="card-icon-box icon-teal">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <circle cx="12" cy="12" r="10"></circle>
