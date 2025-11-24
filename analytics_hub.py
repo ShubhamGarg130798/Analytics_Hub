@@ -88,19 +88,20 @@ const DashboardHub = () => {
       }
     };
 
+    const cardClasses = item.comingSoon 
+      ? 'relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 opacity-60 cursor-not-allowed'
+      : 'relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer';
+
+    const iconClasses = 'inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ' + item.color + ' text-white mb-4';
+
     return (
-      <div
-        onClick={handleClick}
-        className={`relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl ${
-          item.comingSoon ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:-translate-y-2'
-        }`}
-      >
+      <div onClick={handleClick} className={cardClasses}>
         {item.comingSoon && (
           <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">
             Coming Soon
           </div>
         )}
-        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${item.color} text-white mb-4`}>
+        <div className={iconClasses}>
           {item.icon}
         </div>
         <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
