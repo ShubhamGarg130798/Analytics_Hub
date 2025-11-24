@@ -545,7 +545,7 @@ html_code = """
                             </svg>
                         </div>
                         <div class="card-title">Marketing Expense Requirement Calculator</div>
-                        <div class="card-description">Helps you to analyze the expense required for Marketing</div>
+                        <div class="card-description">Helps us to analyze the Marketinge expense</div>
                     </a>
                     
                     <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card card-bg-indigo">
