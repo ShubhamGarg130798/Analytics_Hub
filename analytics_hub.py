@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 # Page config
 st.set_page_config(page_title="Analytics Hub", page_icon="📊", layout="wide")
 
-# Complete HTML/CSS/JS solution
+# Enhanced HTML/CSS/JS solution
 html_code = """
 <!DOCTYPE html>
 <html lang="en">
@@ -20,33 +20,96 @@ html_code = """
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #ffffff;
+            background: linear-gradient(-45deg, #f0f9ff, #ffffff, #fef3c7, #f3e8ff);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             padding: 50px 30px;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating particles effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -30px); }
+            66% { transform: translate(-20px, 20px); }
         }
         
         .container {
             max-width: 1600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
             text-align: center;
             margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .header-icon {
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
+            filter: drop-shadow(0 10px 25px rgba(59, 130, 246, 0.3));
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .main-title {
             font-size: 3.5rem;
             font-weight: 800;
-            color: #1d1d1f;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
             letter-spacing: -1px;
+            animation: titleShine 3s ease-in-out infinite;
+            background-size: 200% auto;
+        }
+        
+        @keyframes titleShine {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
         }
         
         .subtitle {
@@ -59,6 +122,25 @@ html_code = """
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 50px;
+        }
+        
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .section-header {
@@ -74,6 +156,12 @@ html_code = """
         .section-icon {
             width: 35px;
             height: 35px;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .cards-grid {
@@ -83,11 +171,12 @@ html_code = """
         }
         
         .card {
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             border-radius: 18px;
             padding: 30px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
             text-decoration: none;
@@ -95,11 +184,30 @@ html_code = """
             height: 220px;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .card:hover::before {
+            opacity: 1;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
         }
         
         .card-icon-box {
@@ -113,35 +221,50 @@ html_code = """
             margin-bottom: 18px;
             color: white;
             flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        /* Icon colors matching the images */
+        .card:hover .card-icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Icon colors with enhanced gradients */
         .icon-blue {
             background: linear-gradient(135deg, #4285f4 0%, #2962ff 100%);
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
         }
         
         .icon-teal {
             background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.3);
         }
         
         .icon-red {
             background: linear-gradient(135deg, #f8958d 0%, #f06b63 100%);
+            box-shadow: 0 8px 20px rgba(248, 149, 141, 0.3);
         }
         
         .icon-orange {
             background: linear-gradient(135deg, #ff9966 0%, #ff6b35 100%);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
         }
         
         .icon-purple {
             background: linear-gradient(135deg, #b794f6 0%, #9333ea 100%);
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
         }
         
         .icon-green {
             background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
         }
         
         .icon-pink {
             background: linear-gradient(135deg, #f59e8f 0%, #ff8a80 100%);
+            box-shadow: 0 8px 20px rgba(255, 138, 128, 0.3);
         }
         
         .card-title {
@@ -150,6 +273,13 @@ html_code = """
             color: #1d1d1f;
             margin-bottom: 10px;
             line-height: 1.3;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+        
+        .card:hover .card-title {
+            color: #3b82f6;
         }
         
         .card-description {
@@ -157,6 +287,8 @@ html_code = """
             color: #86868b;
             line-height: 1.5;
             flex-grow: 1;
+            position: relative;
+            z-index: 1;
         }
         
         .coming-soon-badge {
@@ -171,7 +303,14 @@ html_code = """
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(255, 154, 35, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 154, 35, 0.4);
+            z-index: 2;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
         
         .card.disabled {
@@ -181,11 +320,44 @@ html_code = """
         
         .card.disabled:hover {
             transform: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .card.disabled:hover .card-icon-box {
+            transform: none;
         }
         
         .card.disabled .card-title {
             color: #86868b;
+        }
+        
+        .card.disabled:hover .card-title {
+            color: #86868b;
+        }
+        
+        /* Shimmer effect for active cards */
+        .card:not(.disabled)::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+        
+        .card:not(.disabled):hover::after {
+            opacity: 1;
+            left: 100%;
         }
         
         @media (max-width: 1400px) {
