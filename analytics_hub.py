@@ -91,8 +91,8 @@ const DashboardHub = () => {
     return (
       <div
         onClick={handleClick}
-        className={`relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
-          item.comingSoon ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'
+        className={`relative bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl ${
+          item.comingSoon ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer hover:-translate-y-2'
         }`}
       >
         {item.comingSoon && (
