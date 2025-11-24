@@ -21,7 +21,7 @@ html_code = """
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #ffffff;
-            padding: 50px 30px;
+            padding: 20px 30px;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -58,7 +58,7 @@ html_code = """
         
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 35px;
             animation: fadeInDown 0.8s ease-out;
         }
         
@@ -160,11 +160,10 @@ html_code = """
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 18px;
             padding: 30px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
@@ -173,49 +172,49 @@ html_code = """
             height: 220px;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
         }
         
-        /* Card background colors */
+        /* Card background colors - more vibrant */
         .card-bg-blue {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         }
         
         .card-bg-teal {
-            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
         }
         
         .card-bg-red {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
         }
         
         .card-bg-pink {
-            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
         }
         
         .card-bg-purple {
-            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
         }
         
         .card-bg-green {
-            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
         }
         
         .card-bg-orange {
-            background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
         }
         
         .card-bg-yellow {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
         }
         
         .card-bg-indigo {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
         }
         
         .card-bg-cyan {
-            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+            background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
         }
         
         .card::before {
@@ -236,8 +235,8 @@ html_code = """
         
         .card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .card-icon-box {
@@ -254,11 +253,12 @@ html_code = """
             position: relative;
             z-index: 1;
             transition: transform 0.4s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
         .card:hover .card-icon-box {
             transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
         
         /* Icon colors with enhanced gradients */
@@ -300,7 +300,7 @@ html_code = """
         .card-title {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #1d1d1f;
+            color: #ffffff;
             margin-bottom: 10px;
             line-height: 1.3;
             position: relative;
@@ -309,12 +309,12 @@ html_code = """
         }
         
         .card:hover .card-title {
-            color: #3b82f6;
+            color: #ffffff;
         }
         
         .card-description {
             font-size: 0.9rem;
-            color: #86868b;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
             flex-grow: 1;
             position: relative;
@@ -350,8 +350,8 @@ html_code = """
         
         .card.disabled:hover {
             transform: none;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         
         .card.disabled:hover .card-icon-box {
@@ -359,11 +359,11 @@ html_code = """
         }
         
         .card.disabled .card-title {
-            color: #86868b;
+            color: rgba(255, 255, 255, 0.7);
         }
         
         .card.disabled:hover .card-title {
-            color: #86868b;
+            color: rgba(255, 255, 255, 0.7);
         }
         
         /* Shimmer effect for active cards */
@@ -593,4 +593,4 @@ html_code = """
 """
 
 # Render the complete HTML
-components.html(html_code, height=1600, scrolling=True)
+components.html(html_code, height=1500, scrolling=True)
