@@ -458,7 +458,7 @@ html_code = """
                         <div class="card-description">Shows the live performance of all our brands</div>
                     </a>
                     
-                    <div class="card card-bg-teal">
+                    <a href="https://expense.fintechcloud.in" target="_blank" class="card card-bg-teal">
                         <div class="card-icon-box icon-teal">
                             <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="12" y1="1" x2="12" y2="23"></line>
@@ -467,7 +467,7 @@ html_code = """
                         </div>
                         <div class="card-title">Opex</div>
                         <div class="card-description">Track the expenses of your domain</div>
-                    </div>
+                    </a>
                     
                     <div class="card card-bg-red disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
