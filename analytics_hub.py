@@ -20,148 +20,224 @@ html_code = """
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 40px 20px;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
         
         .main-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 12px;
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .subtitle {
-            font-size: 1.25rem;
-            color: #6b7280;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 50px 0 30px 0;
+            gap: 15px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
+        .section-icon {
+            font-size: 2.5rem;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         
         .card {
-            background: white;
+            background: linear-gradient(135deg, var(--card-color-1) 0%, var(--card-color-2) 100%);
             border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 25px 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             position: relative;
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         }
         
-        .card.disabled {
-            opacity: 0.6;
+        .card:hover::before {
+            opacity: 1;
         }
         
-        .card-icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 16px;
+        .card-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            margin-bottom: 20px;
-            color: white;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
-        .icon-blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
-        .icon-teal { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); }
-        .icon-red { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
-        .icon-orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
-        .icon-purple { background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%); }
-        .icon-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
+        .card-info {
+            flex-grow: 1;
+        }
+        
+        .card-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
         
         .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-        
-        .card.disabled .card-title {
-            color: #9ca3af;
-        }
-        
-        .card-description {
-            color: #6b7280;
-            font-size: 1rem;
-            line-height: 1.6;
-            flex-grow: 1;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
         }
         
         .coming-soon-badge {
             position: absolute;
-            top: 24px;
-            right: 24px;
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #78350f;
-            padding: 6px 16px;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #f59e0b;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
         
-        .btn {
-            display: inline-block;
-            width: 100%;
-            margin-top: 16px;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+        /* Color schemes */
+        .card-blue {
+            --card-color-1: #3b82f6;
+            --card-color-2: #2563eb;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        .card-teal {
+            --card-color-1: #14b8a6;
+            --card-color-2: #0d9488;
+        }
+        
+        .card-red {
+            --card-color-1: #ef4444;
+            --card-color-2: #dc2626;
+        }
+        
+        .card-orange {
+            --card-color-1: #f97316;
+            --card-color-2: #ea580c;
+        }
+        
+        .card-purple {
+            --card-color-1: #a855f7;
+            --card-color-2: #9333ea;
+        }
+        
+        .card-green {
+            --card-color-1: #22c55e;
+            --card-color-2: #16a34a;
+        }
+        
+        .card-pink {
+            --card-color-1: #ec4899;
+            --card-color-2: #db2777;
+        }
+        
+        .card-indigo {
+            --card-color-1: #6366f1;
+            --card-color-2: #4f46e5;
+        }
+        
+        .card.disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .card.disabled:hover {
+            transform: none;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .main-title {
                 font-size: 2.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -169,90 +245,132 @@ html_code = """
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="main-title">Analytics Hub</h1>
-            <p class="subtitle">Your central hub for dashboards and calculators</p>
+            <h1 class="main-title">📊 Analytics Hub</h1>
+            <p class="subtitle">Your Premium Gateway to Data Intelligence & Business Insights</p>
         </div>
         
-        <div class="section-header">
-            <span>📊</span>
-            <span>Dashboards</span>
-        </div>
-        
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon icon-blue">📊</div>
-                <div class="card-title">Performance Dashboard</div>
-                <div class="card-description">Shows the live performance of all our brands</div>
-                <a href="https://sgdashboards.streamlit.app/" target="_blank" class="btn">Open Performance Dashboard</a>
+        <div class="content-wrapper">
+            <!-- Dashboards Section -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">📊</span>
+                    <span>Dashboards</span>
+                </div>
+                
+                <div class="cards-container">
+                    <a href="https://sgdashboards.streamlit.app/" target="_blank" class="card card-blue">
+                        <div class="card-content">
+                            <div class="card-icon-box">📈</div>
+                            <div class="card-info">
+                                <div class="card-label">Live Analytics</div>
+                                <div class="card-title">Performance Dashboard</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <div class="card card-teal">
+                        <div class="card-content">
+                            <div class="card-icon-box">💰</div>
+                            <div class="card-info">
+                                <div class="card-label">Expense Tracking</div>
+                                <div class="card-title">Opex Management</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-red disabled">
+                        <div class="coming-soon-badge">Coming Soon</div>
+                        <div class="card-content">
+                            <div class="card-icon-box">⚠️</div>
+                            <div class="card-info">
+                                <div class="card-label">Risk Assessment</div>
+                                <div class="card-title">NPA Dashboard</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-orange disabled">
+                        <div class="coming-soon-badge">Coming Soon</div>
+                        <div class="card-content">
+                            <div class="card-icon-box">🎯</div>
+                            <div class="card-info">
+                                <div class="card-label">Campaign Analytics</div>
+                                <div class="card-title">Marketing Dashboard</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card card-purple disabled">
+                        <div class="coming-soon-badge">Coming Soon</div>
+                        <div class="card-content">
+                            <div class="card-icon-box">💬</div>
+                            <div class="card-info">
+                                <div class="card-label">Support Insights</div>
+                                <div class="card-title">Customer Complaints</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="card">
-                <div class="card-icon icon-teal">💲</div>
-                <div class="card-title">Opex</div>
-                <div class="card-description">Track the expenses of your domain</div>
-            </div>
-            
-            <div class="card disabled">
-                <div class="coming-soon-badge">Coming Soon</div>
-                <div class="card-icon icon-red">⚠️</div>
-                <div class="card-title">NPA Dashboard</div>
-                <div class="card-description">Coming Soon</div>
-            </div>
-            
-            <div class="card disabled">
-                <div class="coming-soon-badge">Coming Soon</div>
-                <div class="card-icon icon-orange">🎯</div>
-                <div class="card-title">Marketing Dashboard</div>
-                <div class="card-description">Coming Soon</div>
-            </div>
-            
-            <div class="card disabled">
-                <div class="coming-soon-badge">Coming Soon</div>
-                <div class="card-icon icon-purple">💬</div>
-                <div class="card-title">Customer Complaints Dashboard</div>
-                <div class="card-description">Coming Soon</div>
-            </div>
-        </div>
-        
-        <div class="section-header">
-            <span>🧮</span>
-            <span>Calculators</span>
-        </div>
-        
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon icon-green">📈</div>
-                <div class="card-title">NBFC Projection Calculator</div>
-                <div class="card-description">Visualize your STPL growth story in real time 📈</div>
-                <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="btn">Open NBFC Projection Calculator</a>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon icon-orange">📣</div>
-                <div class="card-title">Marketing Expense Requirement Calculator</div>
-                <div class="card-description">Helps you to analyze the expense required for Marketing</div>
-                <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="btn">Open Marketing Expense Requirement Calculator</a>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon icon-purple">👥</div>
-                <div class="card-title">Work Force Requirement</div>
-                <div class="card-description">Calculates the ideal team size based on workload, productivity, and target utilization.</div>
-                <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="btn">Open Work Force Requirement</a>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon icon-blue">🎁</div>
-                <div class="card-title">Incentive Calculator NPA Team</div>
-                <div class="card-description">Know the incentives earned by team members</div>
-                <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="btn">Open Incentive Calculator NPA Team</a>
-            </div>
-            
-            <div class="card">
-                <div class="card-icon icon-teal">🚀</div>
-                <div class="card-title">Projection Calculator</div>
-                <div class="card-description">Analyse your growth in every FDPs and strategise accordingly.</div>
-                <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="btn">Open Projection Calculator</a>
+            <!-- Calculators Section -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-icon">🧮</span>
+                    <span>Calculators</span>
+                </div>
+                
+                <div class="cards-container">
+                    <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="card card-green">
+                        <div class="card-content">
+                            <div class="card-icon-box">📊</div>
+                            <div class="card-info">
+                                <div class="card-label">Growth Projection</div>
+                                <div class="card-title">NBFC Calculator</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="card card-orange">
+                        <div class="card-content">
+                            <div class="card-icon-box">📣</div>
+                            <div class="card-info">
+                                <div class="card-label">Budget Planning</div>
+                                <div class="card-title">Marketing ROI</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card card-purple">
+                        <div class="card-content">
+                            <div class="card-icon-box">👥</div>
+                            <div class="card-info">
+                                <div class="card-label">Team Planning</div>
+                                <div class="card-title">Workforce Optimizer</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="card card-indigo">
+                        <div class="card-content">
+                            <div class="card-icon-box">🎁</div>
+                            <div class="card-info">
+                                <div class="card-label">Rewards System</div>
+                                <div class="card-title">Incentive Calculator</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="card card-pink">
+                        <div class="card-content">
+                            <div class="card-icon-box">🚀</div>
+                            <div class="card-info">
+                                <div class="card-label">Strategic Planning</div>
+                                <div class="card-title">Growth Projection</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -261,4 +379,4 @@ html_code = """
 """
 
 # Render the complete HTML
-components.html(html_code, height=2000, scrolling=True)
+components.html(html_code, height=1400, scrolling=True)
