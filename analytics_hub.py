@@ -20,8 +20,8 @@ html_code = """
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
+            background-color: #f5f5f7;
+            padding: 50px 30px;
             min-height: 100vh;
         }
         
@@ -32,200 +32,158 @@ html_code = """
         
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .main-title {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            color: white;
+            color: #1d1d1f;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: -1px;
         }
         
         .subtitle {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 300;
+            font-size: 1.3rem;
+            color: #6e6e73;
+            font-weight: 400;
         }
         
         .content-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        
-        .section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
         }
         
         .section-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            gap: 12px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 25px;
         }
         
         .section-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         
-        .cards-container {
-            display: flex;
-            flex-direction: column;
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
         
         .card {
-            background: linear-gradient(135deg, var(--card-color-1) 0%, var(--card-color-2) 100%);
-            border-radius: 16px;
-            padding: 25px 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
             cursor: pointer;
             text-decoration: none;
             display: block;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            min-height: 200px;
         }
         
         .card:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-        }
-        
-        .card:hover::before {
-            opacity: 1;
-        }
-        
-        .card-content {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-            z-index: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
         }
         
         .card-icon-box {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 14px;
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
         }
         
-        .card-info {
-            flex-grow: 1;
+        /* Icon colors matching the images */
+        .icon-blue {
+            background: linear-gradient(135deg, #4285f4 0%, #2962ff 100%);
         }
         
-        .card-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+        .icon-teal {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        }
+        
+        .icon-red {
+            background: linear-gradient(135deg, #f8958d 0%, #f06b63 100%);
+        }
+        
+        .icon-orange {
+            background: linear-gradient(135deg, #ff9966 0%, #ff6b35 100%);
+        }
+        
+        .icon-purple {
+            background: linear-gradient(135deg, #b794f6 0%, #9333ea 100%);
+        }
+        
+        .icon-green {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+        }
+        
+        .icon-pink {
+            background: linear-gradient(135deg, #f59e8f 0%, #ff8a80 100%);
         }
         
         .card-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: white;
-            line-height: 1.2;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .card-description {
+            font-size: 0.95rem;
+            color: #86868b;
+            line-height: 1.5;
         }
         
         .coming-soon-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #f59e0b;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ffc658 0%, #ff9a23 100%);
+            color: white;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Color schemes */
-        .card-blue {
-            --card-color-1: #3b82f6;
-            --card-color-2: #2563eb;
-        }
-        
-        .card-teal {
-            --card-color-1: #14b8a6;
-            --card-color-2: #0d9488;
-        }
-        
-        .card-red {
-            --card-color-1: #ef4444;
-            --card-color-2: #dc2626;
-        }
-        
-        .card-orange {
-            --card-color-1: #f97316;
-            --card-color-2: #ea580c;
-        }
-        
-        .card-purple {
-            --card-color-1: #a855f7;
-            --card-color-2: #9333ea;
-        }
-        
-        .card-green {
-            --card-color-1: #22c55e;
-            --card-color-2: #16a34a;
-        }
-        
-        .card-pink {
-            --card-color-1: #ec4899;
-            --card-color-2: #db2777;
-        }
-        
-        .card-indigo {
-            --card-color-1: #6366f1;
-            --card-color-2: #4f46e5;
+            box-shadow: 0 2px 8px rgba(255, 154, 35, 0.3);
         }
         
         .card.disabled {
-            opacity: 0.7;
+            opacity: 0.65;
             cursor: not-allowed;
         }
         
         .card.disabled:hover {
             transform: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
-        @media (max-width: 1200px) {
+        .card.disabled .card-title {
+            color: #86868b;
+        }
+        
+        @media (max-width: 1400px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 1000px) {
             .content-wrapper {
                 grid-template-columns: 1fr;
             }
@@ -236,8 +194,8 @@ html_code = """
                 font-size: 2.5rem;
             }
             
-            .card-title {
-                font-size: 1.3rem;
+            body {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -246,7 +204,7 @@ html_code = """
     <div class="container">
         <div class="header">
             <h1 class="main-title">📊 Analytics Hub</h1>
-            <p class="subtitle">Your Premium Gateway to Data Intelligence & Business Insights</p>
+            <p class="subtitle">Your central hub for dashboards and calculators</p>
         </div>
         
         <div class="content-wrapper">
@@ -257,58 +215,63 @@ html_code = """
                     <span>Dashboards</span>
                 </div>
                 
-                <div class="cards-container">
-                    <a href="https://sgdashboards.streamlit.app/" target="_blank" class="card card-blue">
-                        <div class="card-content">
-                            <div class="card-icon-box">📈</div>
-                            <div class="card-info">
-                                <div class="card-label">Live Analytics</div>
-                                <div class="card-title">Performance Dashboard</div>
-                            </div>
+                <div class="cards-grid">
+                    <a href="https://sgdashboards.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-blue">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
                         </div>
+                        <div class="card-title">Performance Dashboard</div>
+                        <div class="card-description">Shows the live performance of all our brands</div>
                     </a>
                     
-                    <div class="card card-teal">
-                        <div class="card-content">
-                            <div class="card-icon-box">💰</div>
-                            <div class="card-info">
-                                <div class="card-label">Expense Tracking</div>
-                                <div class="card-title">Opex Management</div>
-                            </div>
+                    <div class="card">
+                        <div class="card-icon-box icon-teal">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
                         </div>
+                        <div class="card-title">Opex</div>
+                        <div class="card-description">Track the expenses of your domain</div>
                     </div>
                     
-                    <div class="card card-red disabled">
+                    <div class="card disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
-                        <div class="card-content">
-                            <div class="card-icon-box">⚠️</div>
-                            <div class="card-info">
-                                <div class="card-label">Risk Assessment</div>
-                                <div class="card-title">NPA Dashboard</div>
-                            </div>
+                        <div class="card-icon-box icon-red">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
                         </div>
+                        <div class="card-title">NPA Dashboard</div>
+                        <div class="card-description">Coming Soon</div>
                     </div>
                     
-                    <div class="card card-orange disabled">
+                    <div class="card disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
-                        <div class="card-content">
-                            <div class="card-icon-box">🎯</div>
-                            <div class="card-info">
-                                <div class="card-label">Campaign Analytics</div>
-                                <div class="card-title">Marketing Dashboard</div>
-                            </div>
+                        <div class="card-icon-box icon-pink">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="12" r="6"></circle>
+                                <circle cx="12" cy="12" r="2"></circle>
+                            </svg>
                         </div>
+                        <div class="card-title">Marketing Dashboard</div>
+                        <div class="card-description">Coming Soon</div>
                     </div>
                     
-                    <div class="card card-purple disabled">
+                    <div class="card disabled">
                         <div class="coming-soon-badge">Coming Soon</div>
-                        <div class="card-content">
-                            <div class="card-icon-box">💬</div>
-                            <div class="card-info">
-                                <div class="card-label">Support Insights</div>
-                                <div class="card-title">Customer Complaints</div>
-                            </div>
+                        <div class="card-icon-box icon-purple">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
                         </div>
+                        <div class="card-title">Customer Complaints Dashboard</div>
+                        <div class="card-description">Coming Soon</div>
                     </div>
                 </div>
             </div>
@@ -320,55 +283,64 @@ html_code = """
                     <span>Calculators</span>
                 </div>
                 
-                <div class="cards-container">
-                    <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="card card-green">
-                        <div class="card-content">
-                            <div class="card-icon-box">📊</div>
-                            <div class="card-info">
-                                <div class="card-label">Growth Projection</div>
-                                <div class="card-title">NBFC Calculator</div>
-                            </div>
+                <div class="cards-grid">
+                    <a href="https://nbfclendingbusinesscalculatorfinal-2jeovxpeab8lxzqtflh3kp.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-green">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <polyline points="19 12 12 19 5 12"></polyline>
+                            </svg>
                         </div>
+                        <div class="card-title">NBFC Projection Calculator</div>
+                        <div class="card-description">Visualize your STPL growth story in real time 📈</div>
                     </a>
                     
-                    <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="card card-orange">
-                        <div class="card-content">
-                            <div class="card-icon-box">📣</div>
-                            <div class="card-info">
-                                <div class="card-label">Budget Planning</div>
-                                <div class="card-title">Marketing ROI</div>
-                            </div>
+                    <a href="https://subhamgargmarketinganalysis.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-orange">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
                         </div>
+                        <div class="card-title">Marketing Expense Requirement Calculator</div>
+                        <div class="card-description">Helps you to analyze the expense required for Marketing</div>
                     </a>
                     
-                    <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card card-purple">
-                        <div class="card-content">
-                            <div class="card-icon-box">👥</div>
-                            <div class="card-info">
-                                <div class="card-label">Team Planning</div>
-                                <div class="card-title">Workforce Optimizer</div>
-                            </div>
+                    <a href="https://sgssteamsize-eappd8e86tvycerctib4tsxgg.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-purple">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
                         </div>
+                        <div class="card-title">Work Force Requirement</div>
+                        <div class="card-description">Calculates the ideal team size based on workload, productivity, and target utilization.</div>
                     </a>
                     
-                    <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="card card-indigo">
-                        <div class="card-content">
-                            <div class="card-icon-box">🎁</div>
-                            <div class="card-info">
-                                <div class="card-label">Rewards System</div>
-                                <div class="card-title">Incentive Calculator</div>
-                            </div>
+                    <a href="https://incentivecalculatorpersonaltarget-4gepaam4wzwqohtor5m7kr.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-blue">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
                         </div>
+                        <div class="card-title">Incentive Calculator NPA Team</div>
+                        <div class="card-description">Know the incentives earned by team members</div>
                     </a>
                     
-                    <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="card card-pink">
-                        <div class="card-content">
-                            <div class="card-icon-box">🚀</div>
-                            <div class="card-info">
-                                <div class="card-label">Strategic Planning</div>
-                                <div class="card-title">Growth Projection</div>
-                            </div>
+                    <a href="https://shuhamgargprojectioncalculator.streamlit.app/" target="_blank" class="card">
+                        <div class="card-icon-box icon-teal">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
                         </div>
+                        <div class="card-title">Projection Calculator</div>
+                        <div class="card-description">Analyse your growth in every FDPs and strategise accordingly.</div>
                     </a>
                 </div>
             </div>
@@ -379,4 +351,4 @@ html_code = """
 """
 
 # Render the complete HTML
-components.html(html_code, height=1400, scrolling=True)
+components.html(html_code, height=1600, scrolling=True)
